@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 
+using f = int(int);
 void sTox(string &s);
 void sTox2(string &s)
 {
@@ -47,9 +48,25 @@ void cinIntVector()
         cout << i << endl;
     }
 }
+
+int ifunc(int a)
+{
+    a++;
+    cout << a << endl;
+    return a;
+}
+
+f* returnRef( )
+{
+    // int a = 1;
+    // f1(a);
+    return ifunc;
+}
+
 int main()
 {
-    
+    f* f1 = returnRef();
+    (*f1)(1);
 }
 void sTox(string &s)
 {
