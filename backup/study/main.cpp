@@ -186,17 +186,38 @@ void swapPoint(int* (&p1) ,int* (&p2)  ){
     p2=p3;
 }
 void test6_2_6_27(initializer_list<int> il){
+    // test6_2_6_27({1,2,3});
+    // test6_2_6_27({1});
+    // test6_2_6_27({1,3,4,5,6,7});
+
     int sum = 0;
     for(int i :il){
         sum+=i;
     }
     cout<<sum<<endl;
 }
+void recursion(std::vector<int>::iterator start, std::vector<int>::iterator end){
+    // vector<int> v ={1,2,3,4,5,6,7};
+    // recursion(v.begin(),v.end()-1);
+
+
+    if(start==end){
+        cout<<(*start)<<endl;
+        return;
+    }else if(start==(end+1)){
+        return;
+    }else{
+        cout<<*start<<"   "<<*end<<endl;
+        start++;
+        end--;
+        recursion(start,end);
+    }
+
+}
 int main(int argc,char *sa[])//sa实际上是指针 无大小
 {
-    test6_2_6_27({1,2,3});
-    test6_2_6_27({1});
-    test6_2_6_27({1,3,4,5,6,7});
+    //透明
+    //
     
 }
 // // for(char *s : sa){//error
