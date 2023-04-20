@@ -245,11 +245,50 @@ void testCopy()
 class Solution
 {
 public:
+    int maxSumAfterPartitioning2(vector<int> &arr, int k)
+    {
+        int size = arr.size();
+        vector<int>resultV(size);
+
+        for(int i=0;i<size;i++){
+
+            int tempMax =-1;
+            resultV[i] = 0;
+            for(int j=i;j>i-k&&j>=0;j--){
+                tempMax=max(tempMax,arr[j]);
+                if(j==0){
+                     resultV[i] = max(resultV[i],tempMax*(i-j+1) );
+                }else{
+
+                    resultV[i]  = max(resultV[i],tempMax*(i-j+1)+resultV[j-1] );
+                }
+            }
+
+        }
+        return resultV[size-1];
+    }
     int maxSumAfterPartitioning(vector<int> &arr, int k)
     {
-        
+        int size = arr.size();
+        vector<int>resultV(size+1);
+        resultV[0]=0;
+
+        for(int i=1;i<=size;i++){
+
+            int tempMax =-1;
+            resultV[i] = 0;
+            for(int j=i;j>i-k&&j>=1;j--){
+                tempMax=max(tempMax,arr[j-1]);
+                
+
+                resultV[i]  = max(resultV[i],tempMax*(i-j+1)+resultV[j-1] );
+                
+            }
+
+        }
+        return resultV[size];
     }
-#pragma region
+    
     int maxSumAfterPartitioningError(vector<int> &arr, int k)
     {
         int l = arr.size();
@@ -336,7 +375,7 @@ public:
         cout << endl;
         return resultA[l - 1];
     }
-#pragma endregion
+
 };
 int main(int argc, char *sa[]) // sa实际上是指针 无大小
 {
