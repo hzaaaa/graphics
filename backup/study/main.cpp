@@ -4,12 +4,12 @@
 #include <deque>
 #include <math.h>
 #include <tuple>
+#include <map>
 
 #include <limits.h>
 #include "a.hpp"
 #include "Sales_data.cpp"
 using namespace std;
-
 
 using f = int(int);
 void sTox(string &s);
@@ -301,6 +301,47 @@ int f_6_7_54(int a, int b)
 class Solution
 {
 public:
+
+    int edgeScore(vector<int> &edges)
+    {
+        int n1 =edges.size();
+        int n = n1;
+        vector<unsigned>result(n,0);
+        unsigned maxResult = 0;
+        while(n--){
+            result[edges[n]] +=n;
+            
+           
+        }
+        int currentMaxi = -1;
+        while(n1--){
+            if(result[n1]>=maxResult){
+                maxResult = result[n1];
+                currentMaxi = n1;
+            }
+        }
+        return currentMaxi;
+
+    }
+    int countMatches(vector<vector<string>> &items, string ruleKey, string ruleValue)
+    {
+        int sum = 0;
+        map<string, int> kTi;
+        kTi["type"] = 0;
+        kTi["color"] = 1;
+        kTi["name"] = 2;
+        int ki = kTi[ruleKey];
+        int n = items.size();
+        while (n--)
+        {
+            if (items[n][ki] == ruleValue)
+                sum++;
+        }
+        // for(auto item : items){
+        //     if(item[ki]==ruleValue) sum++;
+        // }
+        return sum;
+    }
     // Solution s;
     // // vector<int> v{1,4,1,5,7,3,6,1,9,9,3};
     // // int k=4;
@@ -452,13 +493,17 @@ public:
 #pragma endregion
 int main(int argc, char *sah[]) // sa实际上是指针 无大小
 {
-    Sales_data sd1=Sales_data();
-    Sales_data sd2=Sales_data();
-
-    Sales_data sd3= add(sd1,sd2);
-    sd3.print(cout,sd3);
-    sd1.print(cout,sd1);
+    Solution s;
+    // countMatches()
 }
+
+// Sales_data sd1=Sales_data();
+// Sales_data sd2=Sales_data();
+
+// Sales_data sd3= add(sd1,sd2);
+// sd3.print(cout,sd3);
+// sd1.print(cout,sd1);
+
 // // for(char *s : sa){//error
 //     //     cout<<s<<endl;
 //     // }
